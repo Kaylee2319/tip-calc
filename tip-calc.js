@@ -9,11 +9,19 @@ const totalAmount = readlineSync.questionFloat(
 const totalPartySize = readlineSync.questionInt(
   "How many people are you in your party? "
 );
+let tipPercentage;
 
-// Get the % of the tip from the user
-const tipPercentage = readlineSync.questionFloat(
-  "What % would you like to tip? "
-);
+if (totalPartySize >= 6) {
+  // If the party is six or more people then skip
+  // over the percentage and force it to be 18%.
+  tipPercentage = 18;
+  console.log(
+    "If party six is greater than 5, an automatic 18% tip will be applied."
+  );
+} else {
+  // Get the % of the tip from the user
+  tipPercentage = readlineSync.questionFloat("What % would you like to tip? ");
+}
 
 // Repeat all of those things back to the user.
 console.log(`The total amount of your bill is $${totalAmount.toFixed(2)}`);
@@ -31,7 +39,6 @@ let billWithTip = totalAmount + totalAmountToTip;
 let totalPerPerson = billWithTip / totalPartySize;
 
 // Calculate how much everyone is paying
-console.log(`Your total tip amount is $${totalAmountToTip.toFixed(2)}`);
-console.log(`Your total bill with tip $${billWithTip.toFixed(2)}`);
-console.log(`Each person needs to pay $${totalPerPerson.toFixed(2)}`);
-
+console.log(`The tip should be $${totalAmountToTip.toFixed(2)}`);
+console.log(`The total check should be $${billWithTip.toFixed(2)}`);
+console.log(`Each person should pay $${totalPerPerson.toFixed(2)}`);
