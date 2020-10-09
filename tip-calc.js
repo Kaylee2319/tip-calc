@@ -16,14 +16,22 @@ const tipPercentage = readlineSync.questionFloat(
 );
 
 // Repeat all of those things back to the user.
-console.log(totalAmount);
-console.log(totalPartySize);
-console.log(tipPercentage);
+console.log(`The total amount of your bill is $${totalAmount.toFixed(2)}`);
+console.log(`The total party size is ${totalPartySize}`);
+console.log(`With a tip of ${tipPercentage}%`);
 
-// The bill tip is the tipPercentage divided by 100
+// The bill tip is the (totalAmount * tipPercentage divided by 100)
+let percentage = tipPercentage / 100;
+let totalAmountToTip = totalAmount * percentage;
 
 // Total bill is the bill plus the tip
+let billWithTip = totalAmount + totalAmountToTip;
 
 // Get the total amount of the bill divided by the # of people
+let totalPerPerson = billWithTip / totalPartySize;
 
 // Calculate how much everyone is paying
+console.log(`Your total tip amount is $${totalAmountToTip.toFixed(2)}`);
+console.log(`Your total bill with tip $${billWithTip.toFixed(2)}`);
+console.log(`Each person needs to pay $${totalPerPerson.toFixed(2)}`);
+
